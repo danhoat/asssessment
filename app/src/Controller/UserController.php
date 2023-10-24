@@ -94,7 +94,7 @@ class UserController extends AbstractController
 
             }
         } else {
-            die('token wrong');
+            die('Token fail.');
         }
     }
     private function  deleteUser(Request $request){
