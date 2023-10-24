@@ -27,12 +27,12 @@ class UserController extends AbstractController
         else if($action == 'add')
             $this->insertUser($request);
         else if($action == 'edit'){
+
             $id     = (int) $request->get('id');
             $sql    = "SELECT * FROM users where id = ".$id;
             $stmt   = $this->connection->prepare($sql);
             $user   =  $stmt->executeQuery()->fetchAssociative();
             if($user) $edit = $user;
-
         }
 
         $users = $this->executeRequest("SELECT * FROM users", $this->connection);
@@ -69,6 +69,11 @@ class UserController extends AbstractController
         }
 
     }
+    /**
+     *Add new or update exist user.
+     *
+     *
+     * **/
     private function insertUser(Request $request){
 
         $firstname  = $request->get("firstname");
