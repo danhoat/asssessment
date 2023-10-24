@@ -1,0 +1,53 @@
+docker compose up symfony
+
+Open http://localhost:8000, you should be greeted with "Welcome to Symfony 6.3.4".
+
+
+docker compose up symfony
+chạy lệnh này lần nữa nếu  như url trên k xem được.
+
+Copy the following files:
+- serdao-test-files/UserController.php => app/src/Controller/
+- serdao-test-files/user.html.twig => app/templates/
+
+http://localhost:8000/user
+
+Error 1:
+
+Change line:  public function request( $request )
+thành :  public function request(Request $request )
+
+và gọi thêm thư viện: use Symfony\Component\HttpFoundation\Request;
+Error 2:Error: Class 'Doctrine\DBAL\DriverManager' not found
+
+==> cài đặt thư viện Doctrine\DBAL.
+C1: composer require symfony/orm-pack ( nhiều package => lâu)
+C2: composer require doctrine/dbal:2.* ( nhanh, focus vấn đề)
+
+C3:
+"doctrine/dbal": "^2.10". ( sửa file json sau đó chạy lệnh update)
+
+composer update
+
+https://stackoverflow.com/questions/33817983/artisan-migration-error-class-doctrine-dbal-driver-pdomysql-driver-not-fo
+
+
+composer require symfony/orm-pack
+composer require --dev symfony/maker-bundle
+
+https://symfony.com/doc/current/doctrine/dbal.html
+
+
+
+docker compose run symfony composer update
+
+DEBUG: symfony 6.3.6
+
+composer require debug --dev
+
+
+You cannot use the "renderView" method if the Twig Bundle is not available. Try running "composer require symfony/twig-bundle".
+
+
+=> Fix: add this line  "symfony/twig-bundle": "^6.3", to  D:\assessment\app\composer.json file.
+then run: docker compose run symfony composer update
